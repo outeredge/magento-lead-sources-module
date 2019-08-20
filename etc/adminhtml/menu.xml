@@ -4,7 +4,7 @@
         <add id="OuterEdge_LeadSources::leads" title="Leads" module="OuterEdge_LeadSources" sortOrder="50" parent="Magento_Backend::marketing_user_content" action="leads/leads" resource="OuterEdge_LeadSources::leads"/>
         <add id="OuterEdge_LeadSources::sources" title="Lead Sources" translate="title"
             module="OuterEdge_LeadSources"
-            sortOrder="100" parent="Magento_Reports::report_salesroot" action="reports_lead/lead/sources"
+            sortOrder="100" parent="Magento_Reports::report_salesroot" action="reports_lead/report/sources"
             resource="OuterEdge_LeadSources::lead_sources"/>
     </menu>
 </config>
