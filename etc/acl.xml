@@ -8,6 +8,11 @@
                         <resource id="OuterEdge_LeadSources::leads" title="Leads" sortOrder="2" />
                     </resource>
                 </resource>
+                <resource id="Magento_Reports::report">
+                    <resource id="Magento_Reports::report_marketing">
+                        <resource id="OuterEdge_LeadSources::lead_sources" title="Lead Sources Report" translate="title" sortOrder="43" />
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

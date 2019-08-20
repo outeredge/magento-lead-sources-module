@@ -4,5 +4,8 @@
         <route id="leads" frontName="leads">
             <module name="OuterEdge_LeadSources"/>
         </route>
+        <route id="reports_lead" frontName="reports_lead">
+            <module name="OuterEdge_LeadSources" />
+        </route>
     </router>
 </config>
