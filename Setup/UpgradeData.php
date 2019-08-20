@@ -9,6 +9,8 @@ use OuterEdge\LeadSources\Model\Leads;
 use OuterEdge\LeadSources\Model\LeadsFactory;
 use Magento\Quote\Setup\QuoteSetupFactory;
 use Magento\Sales\Setup\SalesSetupFactory;
+use Magento\Framework\DB\Ddl\Table;
+use OuterEdge\LeadSources\Api\Data\CustomFieldsInterface;
  
 class UpgradeData implements UpgradeDataInterface
 {
