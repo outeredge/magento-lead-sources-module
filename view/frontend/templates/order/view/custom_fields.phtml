@@ -1,0 +1,20 @@
+<?php
+/** @var AnnieHaak\CheckoutFields\Block\Order\CustomFields $block */
+
+/** @var AnnieHaak\CheckoutFields\Model\Data\CustomFields $customFields */
+$customFields = $block->getCustomFields($block->getOrder());
+?>
+<?php if($customFields): ?>
+    <div class="block block-order-details-view block-order-details-lead-comment">
+        <div class="block-content">
+            <div class="box">
+                <div class="box-content">
+                    <strong><?php /* @escapeNotVerified */ echo __('Lead') ?>:</strong>
+                    <?php echo $this->escapeHtml($customFields->getCheckoutLead()); ?><br>
+                    <strong><?php /* @escapeNotVerified */ echo __('Comment') ?>:</strong>
+                    <?php echo nl2br($this->escapeHtml($customFields->getCheckoutComment())); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

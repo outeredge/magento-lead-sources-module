@@ -1,3 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <preference for="OuterEdge\LeadSources\Api\Data\CustomFieldsInterface" type="OuterEdge\LeadSources\Model\Data\CustomFields" />
+    <preference for="OuterEdge\LeadSources\Api\CustomFieldsRepositoryInterface" type="OuterEdge\LeadSources\Model\CustomFieldsRepository" />
+    <preference for="OuterEdge\LeadSources\Api\CustomFieldsGuestRepositoryInterface" type="OuterEdge\LeadSources\Model\CustomFieldsGuestRepository" />
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="OuterEdge_LeadSources::addLeadsPlugin" type="OuterEdge\LeadSources\Plugin\AddLeads" sortOrder="1" />
+    </type>
 </config>

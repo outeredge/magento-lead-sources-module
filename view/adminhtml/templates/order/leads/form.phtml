@@ -1,0 +1,16 @@
+
+<?php $helper = $this->helper('OuterEdge\LeadSources\Helper\Data'); ?>
+<div class="admin__field field-leads required _required">
+    <label for="order-leads" class="admin__field-label">
+        <span><?php /* @escapeNotVerified */ echo $helper->getFieldLabel() ?></span></label>
+    <div class="admin__field-control">
+        <select id="order-billing_address_leads_id" name="order[checkout_lead]" class="required-entry required-entry _required select admin__control-select" data-ui-id="billing-address-fieldset-element-select-order-billing-address-leads-id" aria-required="true">
+            <option value=""><?php /* @escapeNotVerified */ echo __('Please select&hellip;') ?></option>
+            <?php foreach ($helper->getLeadArray() as $lead) : ?>
+                <option value="<?= /* @escapeNotVerified */ $lead['value'] ?>">
+                    <?= /* @escapeNotVerified */ $lead['label']?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>

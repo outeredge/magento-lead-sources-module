@@ -1,0 +1,29 @@
+<?php
+/** @var Magento\Backend\Block\Template $block */
+
+/** @var OuterEdge\LeadSources\Model\Data\CustomFields $customFields */
+$customFields = $block->getOrderCustomFields();
+?>
+<?php if($customFields): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Other information') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="order-information">
+                <div class="box">
+                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Lead') ?></span></strong>
+                    <div class="box-content">
+                        <?php echo $this->escapeHtml($customFields->getCheckoutLead()); ?>
+                    </div>
+                </div>
+                <div class="box">
+                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Comment') ?></span></strong>
+                    <div class="box-content">
+                        <?php echo nl2br($this->escapeHtml($customFields->getCheckoutComment())); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

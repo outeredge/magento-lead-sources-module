@@ -7,14 +7,39 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use OuterEdge\LeadSources\Model\Leads;
 use OuterEdge\LeadSources\Model\LeadsFactory;
+use Magento\Quote\Setup\QuoteSetupFactory;
+use Magento\Sales\Setup\SalesSetupFactory;
  
 class UpgradeData implements UpgradeDataInterface
 {
+    /**
+     * @var LeadsFactory
+     */
     protected $leadsFactory;
+
+    /**
+     * @var SalesSetupFactory
+     */
+    protected $salesSetupFactory;
+    
+    /**
+     * @var QuoteSetupFactory
+     */
+    protected $quoteSetupFactory;
+    
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    protected $setup;
  
-    public function __construct(LeadsFactory $leadsFactory)
+    public function __construct(
+        LeadsFactory $leadsFactory,
+        SalesSetupFactory $salesSetupFactory,
+        QuoteSetupFactory $quoteSetupFactory)
     {
         $this->leadsFactory = $leadsFactory;
+        $this->salesSetupFactory = $salesSetupFactory;
+        $this->quoteSetupFactory = $quoteSetupFactory;
     }
 
     public function upgrade( ModuleDataSetupInterface $setup, ModuleContextInterface $context ) 
@@ -42,8 +67,55 @@ class UpgradeData implements UpgradeDataInterface
             
             foreach ($data as $value) {
                 $this->leadsFactory->create()->setData($value)->save();    
-            }
-            
-         }
-     }
+            } 
+        }
+
+        if ( version_compare($context->getVersion(), '1.0.2', '<=' )) {
+            $this->setup = $setup->startSetup();
+            $this->installQuoteData();
+            $this->installSalesData();
+            $this->setup = $setup->endSetup();
+        }
+    }
+
+    /**
+     * Install quote custom data
+     *
+     * @return void
+     */
+    public function installQuoteData()
+    {
+        $quoteInstaller = $this->quoteSetupFactory->create(
+            [
+                'resourceName' => 'quote_setup',
+                'setup' => $this->setup
+            ]
+        );
+        $quoteInstaller
+            ->addAttribute(
+                'quote',
+                CustomFieldsInterface::CHECKOUT_COMMENT,
+                ['type' => Table::TYPE_TEXT, 'length' => '64k', 'nullable' => true]
+            );
+    }
+    
+    /**
+     * @return void
+     */
+    public function installSalesData()
+    {
+        $salesInstaller = $this->salesSetupFactory->create(
+            [
+                'resourceName' => 'sales_setup',
+                'setup' => $this->setup
+            ]
+        );
+        $salesInstaller
+            ->addAttribute(
+                'order',
+                CustomFieldsInterface::CHECKOUT_COMMENT,
+                ['type' => Table::TYPE_TEXT, 'length' => '64k', 'nullable' => true, 'grid' => false]
+            );
+    }
+
 }
