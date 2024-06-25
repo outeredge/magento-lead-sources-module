@@ -9,19 +9,10 @@ use OuterEdge\LeadSources\Api\Data\CustomFieldsInterface;
 
 class AddCustomFieldsToOrder implements ObserverInterface
 {
-    /**
-     * @var RequestInterface
-     */
-    protected $request;
 
-    /**
-     * @param RequestInterface $request
-     */
     public function __construct(
-        RequestInterface $request
-    )
-    {
-        $this->_request = $request; 
+        protected RequestInterface $request
+    ) {
     }
     
     /**
@@ -34,7 +25,7 @@ class AddCustomFieldsToOrder implements ObserverInterface
         $order = $observer->getEvent()->getOrder();
         $quote = $observer->getEvent()->getQuote();
 
-        $orderData = $this->_request->getParam('order');
+        $orderData = $this->request->getParam('order');
         
         if (isset($orderData['checkout_lead'])) {
             $quote->setData(CustomFieldsInterface::CHECKOUT_LEAD,
