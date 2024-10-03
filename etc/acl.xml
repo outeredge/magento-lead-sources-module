@@ -5,7 +5,7 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::marketing">
                     <resource id="Magento_Backend::marketing_user_content">
-                        <resource id="OuterEdge_LeadSources::leads" title="Leads" sortOrder="2" />
+                        <resource id="OuterEdge_LeadSources::leads" title="Lead Sources" sortOrder="200" />
                     </resource>
                 </resource>
                 <resource id="Magento_Reports::report">
