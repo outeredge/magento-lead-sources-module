@@ -6,4 +6,7 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="OuterEdge_LeadSources::addLeadsPlugin" type="OuterEdge\LeadSources\Plugin\AddLeads" sortOrder="1" />
     </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="outeredge_lead_sources_add_lead_to_order_grid" type="OuterEdge\LeadSources\Plugin\AddLeadToOrderGrid" sortOrder="10" />
+    </type>
 </config>
