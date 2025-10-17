@@ -6,4 +6,11 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="OuterEdge_LeadSources::addLeadsPlugin" type="OuterEdge\LeadSources\Plugin\AddLeads" sortOrder="1" />
     </type>
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="lead" xsi:type="string">sales_order.lead</item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
